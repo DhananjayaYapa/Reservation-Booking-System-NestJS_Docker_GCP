@@ -22,10 +22,10 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "y/common": [
+      "@app/common": [
         "libs/common/src"
       ],
-      "y/common/*": [
+      "@app/common/*": [
         "libs/common/src/*"
       ]
     }
