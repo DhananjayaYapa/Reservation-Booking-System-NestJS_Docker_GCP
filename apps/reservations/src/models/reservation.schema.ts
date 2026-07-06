@@ -7,6 +7,9 @@ export class ReservationDocument extends AbstractDocument {
   timestamp: Date;
 
   @Prop()
+  userId: string;
+
+  @Prop()
   startDate: Date;
 
   @Prop()
