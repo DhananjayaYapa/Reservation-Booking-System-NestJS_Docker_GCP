@@ -4,17 +4,17 @@ import { Type } from 'class-transformer';
 export class CreateReservationDto {
   @IsDate()
   @Type(() => Date)
-  startDate: Date;
+  startDate!: Date;
 
   @IsDate()
   @Type(() => Date)
-  endDate: Date;
+  endDate!: Date;
 
   @IsString()
   @IsNotEmpty()
-  invoiceId: string;
+  invoiceId!: string;
 
   @IsString()
   @IsNotEmpty()
-  placeId: string;
+  placeId!: string;
 }
