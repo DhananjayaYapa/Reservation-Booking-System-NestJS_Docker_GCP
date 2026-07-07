@@ -7,7 +7,7 @@ import { CreateChargeDto } from '@app/common';
 export class PaymentsController {
   constructor(private readonly paymentsService: PaymentsService) {}
 
-  @MessagePattern('create_charge')
+  @MessagePattern('create-charge')
   @UsePipes(new ValidationPipe())
   async createCharge(@Payload() data: CreateChargeDto) {
     return this.paymentsService.createCharge(data);
