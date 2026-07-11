@@ -3,10 +3,10 @@ import {
   UnauthorizedException,
   UnprocessableEntityException,
 } from '@nestjs/common';
-import { UsersRepository } from './users.repository';
+import * as bcrypt from 'bcryptjs';
 import { CreateUserDto } from './dto/create-user.dto';
 import { GetUserDto } from './dto/get-user.dto';
-import * as bcrypt from 'bcryptjs';
+import { UsersRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
@@ -23,8 +23,7 @@ export class UsersService {
   private async validateCreateUserDto(createUserDto: CreateUserDto) {
     try {
       await this.usersRepository.findOne({ email: createUserDto.email });
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (_err) {
+    } catch (err) {
       return;
     }
     throw new UnprocessableEntityException('Email already exists.');
@@ -41,5 +40,9 @@ export class UsersService {
 
   async getUser(getUserDto: GetUserDto) {
     return this.usersRepository.findOne(getUserDto);
+  }
+
+  async findAll() {
+    return this.usersRepository.find({});
   }
 }

@@ -11,12 +11,12 @@ COPY nest-cli.json nest-cli.json
 
 RUN npm install -g pnpm@11.8.0
 
-RUN pnpm install --frozen-lockfile
-
-COPY apps/payments apps/payments
+COPY apps/gateway apps/gateway
 COPY libs libs
 
-RUN pnpm run build payments
+RUN pnpm install -r --frozen-lockfile
+
+RUN pnpm run build gateway
 
 FROM node:alpine as production
 
@@ -36,4 +36,4 @@ RUN pnpm install --prod --frozen-lockfile
 
 COPY --from=development /usr/src/app/dist ./dist
 
-CMD ["node", "dist/apps/payments/main"]
+CMD ["node", "dist/apps/gateway/main"]
